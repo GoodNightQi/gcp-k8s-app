@@ -3,16 +3,74 @@ kind: Service
 metadata:
   annotations:
     cloud.google.com/neg: '{"ingress":true}'
+  creationTimestamp: "2023-05-18T14:09:23Z"
   finalizers:
   - service.kubernetes.io/load-balancer-cleanup
   labels:
     app: mongo
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app: {}
+      f:spec:
+        f:allocateLoadBalancerNodePorts: {}
+        f:externalTrafficPolicy: {}
+        f:internalTrafficPolicy: {}
+        f:ports:
+          .: {}
+          k:{"port":27017,"protocol":"TCP"}:
+            .: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector: {}
+        f:sessionAffinity: {}
+        f:type: {}
+    manager: kubectl-expose
+    operation: Update
+    time: "2023-05-18T14:09:23Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:finalizers:
+          .: {}
+          v:"service.kubernetes.io/load-balancer-cleanup": {}
+      f:status:
+        f:loadBalancer:
+          f:ingress: {}
+    manager: kube-controller-manager
+    operation: Update
+    subresource: status
+    time: "2023-05-18T14:09:57Z"
   name: mongo
   namespace: default
-  resourceVersion: "3956"
+  resourceVersion: "3792"
+  uid: 48e844f1-9ac4-4919-9812-8805424cb28d
 spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.36.4.69
+  clusterIPs:
+  - 10.36.4.69
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
   ports:
+  - nodePort: 32528
     port: 27017
+    protocol: TCP
     targetPort: 27017
   selector:
     app: mongo
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 34.173.114.183

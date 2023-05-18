@@ -1,13 +1,76 @@
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  creationTimestamp: "2023-05-18T14:59:32Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
   labels:
     app: my-api
-  name: my-api-service
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app: {}
+      f:spec:
+        f:allocateLoadBalancerNodePorts: {}
+        f:externalTrafficPolicy: {}
+        f:internalTrafficPolicy: {}
+        f:ports:
+          .: {}
+          k:{"port":8080,"protocol":"TCP"}:
+            .: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector: {}
+        f:sessionAffinity: {}
+        f:type: {}
+    manager: kubectl-expose
+    operation: Update
+    time: "2023-05-18T14:59:32Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:finalizers:
+          .: {}
+          v:"service.kubernetes.io/load-balancer-cleanup": {}
+      f:status:
+        f:loadBalancer:
+          f:ingress: {}
+    manager: kube-controller-manager
+    operation: Update
+    subresource: status
+    time: "2023-05-18T15:00:07Z"
+  name: my-api
   namespace: default
+  resourceVersion: "19228"
+  uid: 72645ece-fb3a-4ff2-a67b-9ab6c8c70dec
 spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.92.11.64
+  clusterIPs:
+  - 10.92.11.64
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
   ports:
-  - port: 8080
+  - nodePort: 32204
+    port: 8080
+    protocol: TCP
     targetPort: 8080
   selector:
     app: my-api
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 35.226.73.30
