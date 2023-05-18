@@ -1,0 +1,34 @@
+version: '3'
+
+services: 
+  nodejs: 
+    # 指定以当前目录下的Dockerfile文件打包成镜像
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: nodejs
+    restart: unless-stopped
+    ports: 
+      - "8080:8080"
+    depends_on:
+      - db
+    networks: 
+      - app-network
+
+  # 连接数据库(本次新增的)
+  db:
+    image:  mongo:latest
+    container_name: mongodb
+    restart: unless-stopped
+    ports: 
+      - "27017:27017"
+    volumes: 
+      - ./opt/mongodb/data:/data/db                                                                             
+
+    networks: 
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
