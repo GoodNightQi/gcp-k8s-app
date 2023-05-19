@@ -19,7 +19,7 @@ Log link
 https://console.cloud.google.com/logs/query;cursorTimestamp=2023-05-18T15:27:49.286213Z?hl=zh-cn&project=sit323-23t1-peijin-he-23d5252
 
 
-提交报告，记录所采取的步骤、使用的工具和配置以及遇到的任何挑战。
+Submit a report documenting the steps taken, tools and configurations used, and any challenges encountered
 
 
 Reference Documents  
